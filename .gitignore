@@ -1,0 +1,145 @@
+# ============================================
+# 环境变量与密钥（严禁提交）
+# ============================================
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# 密钥文件
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+
+# ============================================
+# Python
+# ============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# 虚拟环境
+.venv/
+venv/
+ENV/
+env/
+.python-version
+
+# 测试与缓存
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# ============================================
+# Node / 前端
+# ============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-store/
+
+# 构建产物
+**/dist/
+**/.vite/
+.vite/
+*.local
+
+# ============================================
+# 数据库与数据文件
+# ============================================
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+data/*.db
+data/faiss_index/
+data/*.index
+data/*.bin
+data/*.pkl
+*.log
+
+# 向量库本地数据
+milvus_data/
+volumes/
+
+# ============================================
+# 模型权重
+# ============================================
+*.pt
+*.pth
+*.onnx
+*.h5
+*.safetensors
+# 注意：必须写成 /models/（前导斜杠 = 只匹配仓库根目录）
+# 裸写 models/ 会匹配任意层级的同名目录，会误伤 backend/app/models/ 这类代码目录
+/models/
+.cache/huggingface/
+.cache/torch/
+
+# ============================================
+# IDE / 编辑器
+# ============================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+*.code-workspace
+
+# ============================================
+# 操作系统
+# ============================================
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ============================================
+# 其他
+# ============================================
+*.bak
+*.tmp
+*.orig
+*.rej
+temp/
+tmp/
+
+# ============================================
+# 本地草稿（个人使用，不入库）
+# ============================================
+/scratch/
+*.draft.md
+*.local.*

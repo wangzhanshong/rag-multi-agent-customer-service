@@ -1,0 +1,38 @@
+# 一键启动本地依赖：Milvus（向量库） + MySQL（会话与文档元数据）
+# 用法：docker compose up -d
+# 首次启动后，MySQL 会自动创建 customer_service 库；
+# Milvus collection 与 MySQL 表由后端应用启动时自动创建。
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: rag_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:-change_me}"
+      MYSQL_DATABASE: customer_service
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  milvus:
+    image: milvusdb/milvus:v2.4.15
+    container_name: rag_milvus
+    command: ["milvus", "run", "standalone"]
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      ETCD_USE_EMBED: "true"
+      ETCD_DATA_DIR: /var/lib/milvus/etcd
+      ETCD_CONFIG_PATH: /milvus/configs/embedEtcd.yaml
+      COMMON_STORAGETYPE: local
+    volumes:
+      - milvus_data:/var/lib/milvus
+    ports:
+      - "19530:19530"
+      - "9091:9091"
+
+volumes:
+  mysql_data:
+  milvus_data:
